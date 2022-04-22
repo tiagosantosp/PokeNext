@@ -10,7 +10,7 @@ const Card = ({pokemon}) => {
     <div className="flex justify-center items-center flex-col mb-8 py-4 rounded-3xl border border-solid border-red-500 shadow-black shadow-lg  bg-gray-800 text-white card">
       <Image 
         // src={`${url}${pokemon.id}.png`}
-        src={`${url3}`}
+        src={url3}
         height="150"
         width="150"
         alt={pokemon.name}
