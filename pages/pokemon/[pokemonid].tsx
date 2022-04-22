@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import styles from '../../styles/Home.module.css'
 
@@ -20,7 +21,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -36,8 +37,17 @@ export const getStaticProps = async (context) => {
 };
 
 const Pokemon = ({ pokemon }) => {
+  const router = useRouter()
+  
+  if (router.isFallback) {
+    return (
+      <div className="text-3xl flex items-center justify-center font-bold h-full">
+        Carregando...
+      </div>
+    )
+  }
+  
   const url3 = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png`;
-
   return (
     <div className="text-center ">
       <h1 className="text-4xl capitalize bg-gray-800 text-white px-1 py-4 m-auto w-80">{pokemon.name}</h1>

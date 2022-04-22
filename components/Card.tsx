@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 
 const Card = ({pokemon}) => {
-  const url = 'https://cdn.traction.one/pokedex/pokemon/'
+  // const url = 'https://cdn.traction.one/pokedex/pokemon/'
   // const url2 = `https://images.gameinfo.io/pokemon-trimmed/120/p${pokemon.id}.webp`
   const url3 = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png`
 
