@@ -7,7 +7,7 @@ const Card = ({pokemon}) => {
   const url3 = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png`
 
   return (
-    <div className="flex justify-center items-center flex-col mb-8 py-4 rounded-3xl border border-solid border-red-500 shadow-black shadow-lg  bg-gray-800 text-white card">
+    <div className="flex justify-center items-center flex-col mb-8 py-4 rounded-3xl border xs:w-full border-solid border-red-500 shadow-black shadow-lg  bg-gray-800 text-white card transition hover:scale-105">
       <Image 
         // src={`${url}${pokemon.id}.png`}
         src={url3}

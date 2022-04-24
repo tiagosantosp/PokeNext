@@ -6,9 +6,10 @@ import Card from "../components/Card";
 export default function Home({ pokemons }) {
   const [valor, setValor] = useState("");
   const [lista, setLista] = useState(pokemons);
-
+  
   const limpar = () => {
     setLista(pokemons);
+    setValor('')
   };
 
   const busca = (conteudo) => {
@@ -19,8 +20,8 @@ export default function Home({ pokemons }) {
   };
 
   return (
-    <>
-      <div className="flex justify-center items-center mb-8">
+    <div className=" flex flex-col mx-4">
+      <div className="flex justify-center items-center w-screen mb-8 mt-8">
         <h1 className="text-3xl font-bold text-red-600 text-center mr-2">
           Poke<span className="text-gray-800">Next</span>
         </h1>
@@ -50,11 +51,12 @@ export default function Home({ pokemons }) {
         </button>
       </div>
 
-      <div className="flex flex-wrap justify-between items-center max-w-7xl mx-auto">
-        {lista &&
-          lista.map((pokemon) => <Card pokemon={pokemon} key={pokemon.id} />)}
+      <div className="grid md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-1 xs:w-screen   gap-5 ">
+        {lista.length > 0
+          ? lista.map((pokemon) => <Card pokemon={pokemon} key={pokemon.id} />)
+          : <h1 className="text-2xl mx-auto font-bold flex justify-center items-center">Não encontrado...</h1>}
       </div>
-    </>
+    </div>
   );
 }
 
