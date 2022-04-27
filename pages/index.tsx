@@ -53,7 +53,7 @@ export default function Home({ pokemons }) {
         </button>
       </div>
 
-      <div className="grid md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-1 xs:w-screen   gap-5 ">
+      <div className="grid md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-1 xs:w-screen   gap-10 ">
         {lista.length > 0
           ? lista.map((pokemon) => <Card pokemon={pokemon} key={pokemon.id} />)
           : <h1 className="text-2xl mx-auto font-bold flex justify-center items-center">Não encontrado...</h1>}
@@ -65,18 +65,21 @@ export default function Home({ pokemons }) {
 export async function getStaticProps() {
   const maxPokemons = 251;
 
-  const api = "https://pokeapi.co/api/v2/pokemon/";
-  // const api2 = 'https://www.pokemon.com/br/api/pokedex/kalos'
+  //const api = "https://pokeapi.co/api/v2/pokemon/";
+   const api2 = 'https://www.pokemon.com/br/api/pokedex/kalos'
 
-  const res = await fetch(`${api}/?limit=${maxPokemons}`);
+  const res = await fetch(api2);
   const data = await res.json();
-
-  data.results.forEach((item, index) => {
-    item.id = index + 1;
-  });
+  let anterior: number = 0;
+  const dados = data.filter((pkm) => {
+    if (pkm.id !== anterior)  {
+      anterior = pkm.id
+      return pkm
+    }
+  })
   return {
     props: {
-      pokemons: data.results,
+      pokemons: dados,
     },
   };
 }

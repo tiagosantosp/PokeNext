@@ -11,7 +11,7 @@
   background-color: #39f;
 }
 
-.type_eletric {
+.type_electric {
   background-color: #fc3;
 }
 
@@ -69,4 +69,76 @@
 
 .type_fairy {
   background-color: #e9e;
+}
+
+.type__normal {
+  background-color: rgba(170, 170, 153,0.7);
+}
+
+.type__grass {
+  background-color: rgba(119, 204, 85,0.7);
+}
+.type__fire {
+  background-color: rgba(255, 68, 34,0.7);
+}
+
+.type__water {
+  background-color: rgba(51, 153, 255,0.7);
+}
+
+.type__electric {
+  background-color: rgba(255, 204, 51,0.7);
+}
+
+
+.type__ice {
+  background-color: rgba(102, 204, 255,0.7);
+}
+
+.type__fighting {
+  background-color: rgba(187, 85, 68,0.7);
+}
+
+.type__poison {
+  background-color: rgba(163, 85, 148,0.7);
+}
+
+.type__ground {
+  background-color: rgba(221, 187, 85,0.7);
+}
+
+.type__flying {
+  background-color: rgba(136, 153, 255,0.7);
+}
+
+.type__psychic {
+  background-color: rgba(255, 85, 153,0.7);
+}
+
+.type__bug {
+  background-color: rgba(170, 187, 34,0.7);
+}
+
+.type__rock {
+  background-color: rgba(187, 170, 102,0.7);
+}
+
+.type__ghost {
+  background-color: rgba(102, 102, 187,0.7);
+}
+
+.type__dragon {
+  background-color: rgba(119, 102, 238,0.7);
+}
+
+.type__dark {
+  background-color: rgba(119, 85, 68,0.7);
+}
+
+.type__steel {
+  background-color: rgba(170, 170, 187,0.7);
+}
+
+.type__fairy {
+  background-color: rgba(238, 153, 238,0.7);
 }
