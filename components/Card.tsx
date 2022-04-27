@@ -1,6 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
+interface Pokemon{
+  name: string
+}
+
 import styles from "../styles/Home.module.css";
 
 const Card = ({ pokemon }) => {
@@ -15,7 +19,10 @@ const Card = ({ pokemon }) => {
       let hallFameAtualizado = Array.from(hf);
 
       let repetido = hallFameAtualizado.filter(
-        (pokemon) => pokemon.name === pkm.name
+        (pokemon) => {
+          let pkm2= pokemon  as unknown as Pokemon
+          pkm2.name === pkm.name
+        }
       );
       if (repetido.length === 0) {
         hallFameAtualizado.unshift(pkm);
@@ -32,7 +39,7 @@ const Card = ({ pokemon }) => {
   };
 
   return (
-    <Link href={`/pokemon/${pokemon.id}`}>
+    <Link href={`/pokemon/${pokemon.id}`}><a>
     <div className={`flex justify-center items-center flex-col mb-8  rounded-3xl border xs:w-screen border-solid border-red-500 shadow-black shadow-lg  bg-gray-800 text-white card transition hover:scale-105 ${styles["type__" + pokemon.type[0]]}`}>
       <div className="flex justify-start items-end w-full h-full">
       <p className="text-lg my-4 bg-red-500 rounded-md py-1 px-2 flex justify-center items-center">
@@ -70,11 +77,11 @@ const Card = ({ pokemon }) => {
           </span>
         ))}
       </div>
-      {/* <button className="p-1 bg-slate-300" onClick={() => add(pokemon)}>
+      <button className="p-1 bg-slate-300" onClick={() => add(pokemon)}>
         ADD
-      </button> */}
+      </button>
     </div>
-    </Link>
+    </a></Link>
   );
 };
 
