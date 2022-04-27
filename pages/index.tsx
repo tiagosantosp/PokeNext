@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import Card from "../components/Card";
 
+
 export default function Home({ pokemons }) {
   const [valor, setValor] = useState("");
   const [lista, setLista] = useState(pokemons);
@@ -14,10 +15,11 @@ export default function Home({ pokemons }) {
 
   const busca = (conteudo) => {
     const filtrado = pokemons.filter(
-      (pokemon) => pokemon.name.toLowerCase().indexOf(conteudo) != -1
+      (pokemon) => pokemon.name.toLowerCase().indexOf(conteudo.toLowerCase()) != -1
     );
     setLista(filtrado);
   };
+
 
   return (
     <div className=" flex flex-col mx-4">

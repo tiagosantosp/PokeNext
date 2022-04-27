@@ -1,11 +1,31 @@
 import Image from 'next/image'
 
+import { useEffect, useState } from 'react';
+import Card from '../components/Card';
+
 const About = () => {
+  const [hallOfFame, setHallOfFame] = useState([]);
+  
+  useEffect(() => {
+    let dt = localStorage.getItem('hallOfFame')
+    if (dt) {
+      dt = JSON.parse(dt)
+      const array = Array.from(dt)
+      setHallOfFame(array)
+    }
+  }, [])
+
+
+
   return (
-    <div className='flex flex-col w-1/2 items-center justify-center space-y-4 m-auto'>
-      <h1 className='font-bold text-3xl'>Sobre o Projeto</h1>
-      <p className='text-justify'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the  standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-      <Image src="/images/charizard.png" width="300" height="300" alt='Charizard'/>
+    <div className='flex flex-col w-full border border-gray-300  items-center justify-center space-y-4 m-auto' style={{height: "85vh"}}>
+      <h1 className='font-bold text-3xl'>Hall of Fame</h1>
+      <div className='shadow-xl rounded-lg w-full flex flex-row bg-gray-100 justify-between items-center'>
+      
+      {hallOfFame && hallOfFame.map((pkm) => <Card key={pkm.id} pokemon={pkm}/>)}
+
+      </div>
+      
     </div>
   );
 }
