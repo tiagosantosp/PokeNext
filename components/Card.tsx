@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-
+import { useState } from "react";
+import {FaPlus, FaCheck} from 'react-icons/fa'
 interface Pokemon{
   name: string
 }
@@ -8,13 +9,16 @@ interface Pokemon{
 import styles from "../styles/Home.module.css";
 
 const Card = ({ pokemon }) => {
+  const [pkmAdd, setPkmAdd] = useState(false)
   const url3 = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png`;
 
-  const add = (pkm) => {
+  const add = (pkm, event) => {
+    event.preventDefault();
     let hf = localStorage.getItem("hallOfFame");
     let hallFame: string[] = [];
 
     if (hf) {
+      
       hf = JSON.parse(hf);
       let hallFameAtualizado = Array.from(hf);
 
@@ -25,11 +29,12 @@ const Card = ({ pokemon }) => {
         }
       );
       if (repetido.length === 0) {
+
         hallFameAtualizado.unshift(pkm);
         if (hallFameAtualizado.length > 6) {
           hallFameAtualizado.pop();
         }
-
+        setPkmAdd(true)
         localStorage.setItem("hallOfFame", JSON.stringify(hallFameAtualizado));
       }
     } else {
@@ -38,20 +43,28 @@ const Card = ({ pokemon }) => {
     }
   };
 
+
+
   return (
     <Link href={`/pokemon/${pokemon.id}`}><a>
-    <div className={`flex justify-center items-center flex-col mb-8  rounded-3xl border xs:w-screen border-solid border-red-500 shadow-black shadow-lg  bg-gray-800 text-white card transition hover:scale-105 ${styles["type__" + pokemon.type[0]]}`}>
-      <div className="flex justify-start items-end w-full h-full">
-      <p className="text-lg my-4 bg-red-500 rounded-md py-1 px-2 flex justify-center items-center">
-        <Image
-            src="/images/pokeball.png"
-            width="15"
-            height="15"
-            alt="Pokeball"
-          />&nbsp;{pokemon.id}
+    <div className={`flex justify-center items-center flex-col mb-8  rounded-2xl border xs:w-screen border-solid border-red-500 shadow-black shadow-lg  bg-gray-800 text-white card transition hover:scale-105 ${styles["type__" + pokemon.type[0]]}`}>
+      <div className="relative flex justify-start items-end w-full h-full">
+        <p className=" absolute -top-4 text-lg my-4 bg-red-500  rounded-tl-xl rounded-br-xl py-1 px-2  flex justify-center items-center">
+          <Image
+              src="/images/pokeball.png"
+              width="15"
+              height="15"
+              alt="Pokeball"
+            />&nbsp;{pokemon.id}
         </p>
+        <button 
+          className=" absolute -top-4 right-0 text-lg my-4 bg-red-500  rounded-tr-xl rounded-bl-xl py-1 px-2  flex justify-center items-center"
+          onClick={(event) => add(pokemon, event)}
+        >
+           {pkmAdd ? <FaCheck/>:<FaPlus /> }
+        </button>
       </div>
-      <div className=" bg-gray-400 bg-opacity-30 shadow-2xl rounded-xl">
+      <div className=" bg-gray-400 bg-opacity-30 shadow-2xl rounded-xl mt-4">
         <Image
           src={url3}
           height="150"
@@ -77,9 +90,6 @@ const Card = ({ pokemon }) => {
           </span>
         ))}
       </div>
-      <button className="p-1 bg-slate-300" onClick={() => add(pokemon)}>
-        ADD
-      </button>
     </div>
     </a></Link>
   );
