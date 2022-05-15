@@ -1,25 +1,52 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import Card from "../components/Card";
 
 
 export default function Home({ pokemons }) {
   const [valor, setValor] = useState("");
-  const [lista, setLista] = useState(pokemons);
+  const [qtdPkm, setQtdPkm] = useState(20);
+  const [visible, setVisible] = useState(false);
+
+  const novo = useRef()
+
+  const page = (pokemons) => {
+    const pkmAtual = pokemons.filter(pkm => pkm.id < qtdPkm);
+    return pkmAtual
+  }
+  const [lista, setLista] = useState(page(pokemons));
   
   const limpar = () => {
-    setLista(pokemons);
+    setLista(page(pokemons));
     setValor('')
   };
 
-  const busca = (conteudo) => {
+  const busca = (conteudo: string) => {
     const filtrado = pokemons.filter(
       (pokemon) => pokemon.name.toLowerCase().indexOf(conteudo.toLowerCase()) != -1
     );
     setLista(filtrado);
   };
 
+
+  useEffect(()=> {
+    if (visible) {
+      setQtdPkm(qtdPkm + 20)
+      setLista(page(pokemons))
+    }
+    
+  }, [visible])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) =>{
+      const entry = entries[0]
+      setVisible(entry.isIntersecting)
+
+    } )
+    observer.observe(novo.current)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div className=" flex flex-col mx-4">
@@ -58,6 +85,7 @@ export default function Home({ pokemons }) {
           ? lista.map((pokemon) => <Card pokemon={pokemon} key={pokemon.id} />)
           : <h1 className="text-2xl mx-auto font-bold flex justify-center items-center">Não encontrado...</h1>}
       </div>
+      {lista && <div ref={novo} >.</div>}      
     </div>
   );
 }
@@ -81,5 +109,6 @@ export async function getStaticProps() {
     props: {
       pokemons: dados,
     },
+    revalidate: 60 * 10,
   };
 }
