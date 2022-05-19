@@ -2,47 +2,61 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import {FaPlus, FaCheck} from 'react-icons/fa'
-interface Pokemon{
-  name: string
-}
+import { useList } from "../Providers/Lista";
+
+
 
 import styles from "../styles/Home.module.css";
 
 const Card = ({ pokemon }) => {
   const [pkmAdd, setPkmAdd] = useState(false)
   const url3 = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png`;
+  const { listaPkm, addListaPkm } = useList()  
+
 
   const add = (pkm, event) => {
     event.preventDefault();
-    let hf = localStorage.getItem("hallOfFame");
-    let hallFame: string[] = [];
-
-    if (hf) {
+    console.log(listaPkm)
+    if (listaPkm.length > 0) {
       
-      hf = JSON.parse(hf);
-      let hallFameAtualizado = Array.from(hf);
-
-      let repetido = hallFameAtualizado.filter(
-        (pokemon) => {
-          let pkm2= pokemon  as unknown as Pokemon
-          pkm2.name === pkm.name
-        }
-      );
+      let repetido = listaPkm.filter(
+        (pokemon) => pokemon.name === pkm.name
+      )
+      console.log(repetido)
       if (repetido.length === 0) {
-
-        hallFameAtualizado.unshift(pkm);
-        if (hallFameAtualizado.length > 6) {
-          hallFameAtualizado.pop();
-        }
-        setPkmAdd(true)
-        localStorage.setItem("hallOfFame", JSON.stringify(hallFameAtualizado));
+           let poke = listaPkm
+           poke.unshift(pkm);
+           if (poke.length > 6) {
+              poke.pop();
+           }
+           setPkmAdd(true)
+           addListaPkm(poke)
+           localStorage.setItem('hallOfFame', JSON.stringify(poke))
       }
     } else {
-      hallFame.push(pkm);
-      localStorage.setItem("hallOfFame", JSON.stringify(hallFame));
+      setPkmAdd(true)
+      let list = []
+      list.push(pkm)
+      addListaPkm(list)
     }
   };
 
+  const teste = (pkm) => {
+    if (listaPkm.length > 0){
+      let repetido = listaPkm.filter(
+        (pokemon) => pokemon.name === pkm.name
+      )
+      if (repetido.length > 0) {
+        return true
+      } else {
+        return false
+      }
+    }
+    return false
+  }
+
+
+ 
 
 
   return (
@@ -61,7 +75,7 @@ const Card = ({ pokemon }) => {
           className=" absolute -top-4 right-0 text-lg my-4 bg-red-500  rounded-tr-xl rounded-bl-xl py-1 px-2  flex justify-center items-center"
           onClick={(event) => add(pokemon, event)}
         >
-           {pkmAdd ? <FaCheck/>:<FaPlus /> }
+           {teste(pokemon) ? <FaCheck className="text-green-500 text-2xl "/>:<FaPlus className="text-2xl " /> }
         </button>
       </div>
       <div className=" bg-gray-400 bg-opacity-30 shadow-2xl rounded-xl mt-4">
@@ -72,7 +86,7 @@ const Card = ({ pokemon }) => {
           alt={pokemon.name}
         />
       </div>
-      <h3 className="capitalize mb-4 text-2xl">{pokemon.name}</h3>
+      <h3  className="capitalize mb-4 text-2xl">{pokemon.name}</h3>
       {/* <Link href={`/pokemon/${pokemon.id}`}>
         <a className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md font-bold transition duration-500 hover:bg-red-500 hover:text-gray-300  ">
           Detalhes

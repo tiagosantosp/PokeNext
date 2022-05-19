@@ -1,11 +1,14 @@
 import '../styles/globals.css'
 import Layout from '../components/Layout'
+import { ListProvider } from '../Providers/Lista'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ListProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ListProvider>
   ) 
 }
 
