@@ -34,11 +34,12 @@ export const ListProvider = (props) => {
   }
 
   useEffect(() => {
-    let dados = localStorage.getItem('hallOfFame')
-    const lista = converter(dados)
-     
-    
-    setListaPkm(lista)
+
+    if (localStorage.getItem('hallOfFame') != null){
+      let dados = localStorage.getItem('hallOfFame')
+      const lista = converter(dados)   
+      setListaPkm(lista)
+    }
   },[])
   
   const converter = (poke: string)=> {
