@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <nav className="  flex justify-between items-center py-4 px-5   w-screen bg-gray-800 text-white">
+    <nav className="  flex justify-between items-center py-4 px-5   w-full bg-gray-800 text-white">
       <div className="flex justify-center items-center">
         <Image
           src="/images/pokeball.png"
@@ -24,7 +24,7 @@ const Navbar = () => {
         <li>
           <Link href="/about">
             <a className="text-white p-2 transition-colors ease-in-out border-gray-800  hover:border-b-2 hover:border-white duration-300 ">
-              Sobre
+              Hall of Fame
             </a>
           </Link>
         </li>

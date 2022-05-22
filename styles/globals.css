@@ -19,4 +19,20 @@ body {
   opacity : 0.2;
   z-index: -1;
   background-attachment: fixed;
+  background-size: 100%;
+}
+
+.fundoHallOfFame {
+  background-image: url('/images/trofeis.webp'); 
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 100%;
+}
+
+.goldGradient {
+  background: #FCF6BA;
+  background: radial-gradient(ellipse farthest-corner at center center, #FCF6BA 10%, #B38728 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

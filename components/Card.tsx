@@ -16,7 +16,6 @@ const Card = ({ pokemon }) => {
 
   const add = (pkm, event) => {
     event.preventDefault();
-    console.log(listaPkm)
     if (listaPkm.length > 0) {
       
       let repetido = listaPkm.filter(
@@ -75,7 +74,7 @@ const Card = ({ pokemon }) => {
           className=" absolute -top-4 right-0 text-lg my-4 bg-red-500  rounded-tr-xl rounded-bl-xl py-1 px-2  flex justify-center items-center"
           onClick={(event) => add(pokemon, event)}
         >
-           {teste(pokemon) ? <FaCheck className="text-green-500 text-2xl "/>:<FaPlus className="text-2xl " /> }
+           {teste(pokemon) ? <FaCheck className="text-green-500 text-3xl "/>:<FaPlus className="text-3xl " /> }
         </button>
       </div>
       <div className=" bg-gray-400 bg-opacity-30 shadow-2xl rounded-xl mt-4">
