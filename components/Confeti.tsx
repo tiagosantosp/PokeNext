@@ -12,7 +12,7 @@ const Confeti = () => {
   }, []) // add the var dependencies or not
 
   return(
-    <canvas id="my-canvas" className="absolute top-8  w-full h-4/5"></canvas>
+    <canvas id="my-canvas" className="fixed top-8  w-full h-full"></canvas>
   )
 }
 

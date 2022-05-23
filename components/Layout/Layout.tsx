@@ -5,13 +5,13 @@ import Head from "next/head";
 
 const Layout = ({children}) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col flex-grow">
       <Head>
         <link rel="shortcut icon" href="/images/favicon.ico"/>
         <title>PokeNext</title>
       </Head>
       <Navbar/>
-      <main className="h-full flex-grow fundo">{children}</main>
+      <main className=" fundo">{children}</main>
       <Footer/>
     </div>
   );

@@ -16,14 +16,13 @@ const About = () => {
 
   return (
     <div
-      className="flex flex-col w-full border border-gray-300  items-center justify-center space-y-4 m-auto"
-      style={{ height: "85vh" }}
+      className="flex flex-col w-full h-full md:h-screen   items-center justify-center space-y-4  mt-8"
     >
-      <div className="shadow-xl rounded-3xl w-10/12 flex flex-col bg-gray-100   items-center fundoHallOfFame pt-8 min-h-[400px]">
-        <h1 className="font-bold text-5xl mb-4 ">
+      <div className=" shadow-xl rounded-3xl w-10/12 flex flex-col  bg-indigo-100   items-center fundoHallOfFame pt-8 min-h-[400px]">
+        <h1 className="font-bold xs:text-3xl text-5xl mb-4 ">
           <span className="goldGradient">Hall of Fame</span>
         </h1>
-        <div className="flex flex-row  justify-evenly  w-full">
+        <div className="flex md:flex-row md:flex-wrap md:gap-x-8 lg:flex-nowrap xs:flex-col sm:flex-col justify-evenly  w-full mb-16">
           {hallOfFame &&
             hallOfFame.map((pkm) => (
               <div key={pkm.id}>

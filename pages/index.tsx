@@ -55,7 +55,7 @@ export default function Home({ pokemons }) {
   }, [buscando]);
 
   return (
-    <div className=" flex flex-col mx-4">
+    <div className=" flex flex-col mx-4 ">
       {/* LOGO */}
       <div className="flex justify-center items-center mb-8 mt-8">
         <h1 className="text-3xl font-bold text-red-600 text-center mr-2">
@@ -94,7 +94,7 @@ export default function Home({ pokemons }) {
       </div>
 
       {/* CARDS DE POKEMON */}
-      <div className="grid md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-1 xs:w-screen   gap-10 ">
+      <div className="grid md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-1  gap-10 ">
         {lista.length > 0 ? (
           lista.map((pokemon) => <Card pokemon={pokemon} key={pokemon.id} />)
         ) : (

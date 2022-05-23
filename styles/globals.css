@@ -8,6 +8,14 @@ body {
   box-sizing: border-box;
 }
 
+
+@media (max-width: 420px) {
+  #__next {
+    display: flex;
+    flex-grow: 1;
+  }
+} 
+
 .fundo::after {
   content : "";
   position: fixed;
@@ -29,7 +37,6 @@ body {
   background-position: left;
   background-size: 100%;
 }
-
 .goldGradient {
   background: #FCF6BA;
   background: radial-gradient(ellipse farthest-corner at center center, #FCF6BA 10%, #B38728 100%);

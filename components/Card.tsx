@@ -60,7 +60,7 @@ const Card = ({ pokemon }) => {
 
   return (
     <Link href={`/pokemon/${pokemon.id}`}><a>
-    <div className={`flex justify-center items-center flex-col mb-8  rounded-2xl border xs:w-screen border-solid border-red-500 shadow-black shadow-lg  bg-gray-800 text-white card transition hover:scale-105 ${styles["type__" + pokemon.type[0]]}`}>
+    <div className={`flex justify-center items-center flex-col mb-8  rounded-2xl border border-solid border-red-500 shadow-black shadow-lg  bg-gray-800 text-white card transition hover:scale-105 ${styles["type__" + pokemon.type[0]]}`}>
       <div className="relative flex justify-start items-end w-full h-full">
         <p className=" absolute -top-4 text-lg my-4 bg-red-500  rounded-tl-xl rounded-br-xl py-1 px-2  flex justify-center items-center">
           <Image
